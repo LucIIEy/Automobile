@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="640dp"
+    android:height="640dp"
+    android:viewportWidth="320"
+    android:viewportHeight="320">
+
+    <!-- 바깥쪽 흰색 링 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#18FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M160,1 A159,159 0,1 0,160,319 A159,159 0,1 0,160,1" />
+
+    <!-- 안쪽 흰색 링 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M160,22 A138,138 0,1 0,160,298 A138,138 0,1 0,160,22" />
+
+    <!-- 은은한 테두리 -->
+    <path
+        android:fillColor="#14FFFFFF"
+        android:pathData="M160,34 A126,126 0,1 0,160,286 A126,126 0,1 0,160,34" />
+
+    <!-- 로고와 같은 흰색 버튼 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M160,44 A116,116 0,1 0,160,276 A116,116 0,1 0,160,44" />
+
+    <!-- 네이비 마이크 -->
+    <group
+        android:scaleX="4"
+        android:scaleY="4"
+        android:translateX="112"
+        android:translateY="112">
+
+        <path
+            android:fillColor="@android:color/transparent"
+            android:strokeColor="#121F3A"
+            android:strokeWidth="1.7"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M12,3 C10.34,3 9,4.34 9,6 V11 C9,12.66 10.34,14 12,14 C13.66,14 15,12.66 15,11 V6 C15,4.34 13.66,3 12,3 Z M5.5,11 A6.5,6.5 0,0 0,18.5,11 M12,17.5 V21" />
+
+    </group>
+</vector>

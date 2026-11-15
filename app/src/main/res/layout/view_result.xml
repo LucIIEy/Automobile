@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    app:cardBackgroundColor="#F2F5F9"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    tools:layout_width="420dp"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/placeName"
+            style="@style/TextStrong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_light"
+            android:textColor="@color/hyundai_navy"
+            android:textSize="@dimen/text_choice"
+            tools:text="죽전휴게소" />
+
+        <TextView
+            android:id="@+id/placeMeta"
+            style="@style/TextBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/pretendard_extralight"
+            android:textColor="#28282B"
+            android:textSize="@dimen/text_small"
+            tools:text="약 1.2km · 예상 3분 · 시연 데이터" />
+
+        <TextView
+            android:id="@+id/placeReason"
+            style="@style/TextBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="@dimen/text_small"
+            android:fontFamily="@font/pretendard_extralight"
+            tools:text="고속도로에서 바로 들어갈 수 있어요." />
+
+        <LinearLayout
+            android:id="@+id/confirmRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/yesButton"
+                style="@style/ActionButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_weight="1"
+                android:text="안내 요청"
+                android:textSize="@dimen/text_body"
+                android:fontFamily="@font/pretendard_extralight"
+                app:cornerRadius="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/noButton"
+                style="@style/ActionButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:text="다른 곳"
+                android:textColor="@color/hyundai_navy"
+                android:textSize="@dimen/text_body"
+                android:fontFamily="@font/pretendard_extralight"
+                app:backgroundTint="@color/surface_white"
+                app:strokeColor="@color/hyundai_navy"
+                app:strokeWidth="1dp"
+                app:cornerRadius="16dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,10 +1,602 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/screen_padding"
+    android:background="@color/screen_background"
     tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 상단: 준비 상태 / 음성·선택 탭 / 목적지 설정 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SurfaceCard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="18dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="●"
+                    android:textColor="@color/ready_green"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:id="@+id/statusText"
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:maxWidth="220dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="준비 중"
+                    tools:text="준비 완료" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/soft_gray"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/voiceTab"
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minWidth="64dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_tab"
+                    android:text="음성"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/choiceTab"
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:minWidth="64dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_tab"
+                    android:text="선택"
+                    android:textColor="@color/text_muted"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SurfaceCard"
+            android:layout_width="@dimen/header_height"
+            android:layout_height="@dimen/header_height"
+            android:layout_marginStart="12dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="2dp">
+
+            <ImageButton
+                android:id="@+id/routeButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_location"
+                android:scaleType="fitCenter"
+                android:contentDescription="시연용 목적지 설정" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <!-- 본문 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <!-- 왼쪽: 긴급 안내 카드 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="56"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/section_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStrong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="긴급 안내"
+                    android:textSize="@dimen/text_section" />
+
+                <TextView
+                    android:id="@+id/helpButton"
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="사용 방법"
+                    android:textColor="@color/hyundai_navy"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/SurfaceCard"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="6dp">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            style="@style/TextStrong"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="말 한마디면 충분해요"
+                            android:textColor="@color/hyundai_navy" />
+
+                        <!-- 제목과 현대차 로고 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:baselineAligned="false">
+
+                            <TextView
+                                android:id="@+id/mainText"
+                                style="@style/TextStrong"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/title_height"
+                                android:layout_weight="1"
+                                android:autoSizeMaxTextSize="@dimen/text_title"
+                                android:autoSizeMinTextSize="@dimen/text_title_min"
+                                android:autoSizeStepGranularity="1sp"
+                                android:autoSizeTextType="none"
+                                android:ellipsize="end"
+                                android:gravity="center_vertical"
+                                android:letterSpacing="-0.033"
+                                android:maxLines="2"
+                                android:text="급한 일이\n생겼나요?"
+                                android:textSize="60sp" />
+
+                            <ImageView
+                                android:layout_width="@dimen/logo_width"
+                                android:layout_height="@dimen/logo_height"
+                                android:layout_marginStart="12dp"
+                                android:src="@drawable/ic_hyundai"
+                                android:scaleType="fitCenter"
+                                android:contentDescription="현대자동차" />
+
+                        </LinearLayout>
+
+                        <!-- 듣는 중 문구 / 인식한 문장 -->
+                        <TextView
+                            android:id="@+id/subText"
+                            style="@style/TextBase"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textColor="@color/text_muted"
+                            android:visibility="gone"
+                            tools:text="말씀을 듣고 있어요." />
+
+                        <!-- 인식 결과와 안내 확인 버튼 -->
+                        <include
+                            layout="@layout/view_result"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            tools:visibility="gone" />
+
+                        <Space
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <!-- 진행 단계 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:id="@+id/stepOne"
+                                android:layout_width="@dimen/step_width"
+                                android:layout_height="@dimen/step_height"
+                                android:background="@drawable/bg_step" />
+
+                            <View
+                                android:id="@+id/stepTwo"
+                                android:layout_width="@dimen/step_width"
+                                android:layout_height="@dimen/step_height"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_step" />
+
+                            <View
+                                android:id="@+id/stepThree"
+                                android:layout_width="@dimen/step_width"
+                                android:layout_height="@dimen/step_height"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/bg_step" />
+
+                            <TextView
+                                style="@style/TextStrong"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="12dp"
+                                android:text="누르기 → 말하기 → 안내"
+                                android:textColor="@color/text_muted"
+                                android:textSize="@dimen/text_small" />
+
+                        </LinearLayout>
+
+                        <!-- 음성 입력 -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/micButton"
+                            style="@style/ActionButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_marginTop="20dp"
+                            android:text="눌러서 말하기"
+                            app:icon="@drawable/ic_mic"
+                            app:iconSize="@dimen/icon_size"
+                            app:iconPadding="12dp"
+                            app:iconGravity="textStart" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- 오른쪽: 바로 선택 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="44"
+            android:layout_marginStart="@dimen/panel_gap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/section_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextStrong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="바로 선택"
+                    android:textSize="@dimen/text_section" />
+
+                <TextView
+                    android:id="@+id/sortButton"
+                    style="@style/TextStrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingHorizontal="4dp"
+                    android:text="근처 순"
+                    android:textColor="@color/hyundai_navy"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:paddingBottom="6dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 화장실 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/quickToilet"
+                        style="@style/SurfaceCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/choice_height"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:rippleColor="#18002C5F">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingHorizontal="20dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="@dimen/icon_box"
+                                android:layout_height="@dimen/icon_box"
+                                app:cardBackgroundColor="@color/hyundai_navy"
+                                app:cardCornerRadius="100dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/icon_size"
+                                    android:layout_height="@dimen/icon_size"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_restroom"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/surface_white" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="화장실"
+                                    android:textSize="@dimen/text_choice" />
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="휴게소 · 공중화장실"
+                                    android:textColor="@color/text_muted"
+                                    android:textSize="@dimen/text_small" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_arrow"
+                                android:contentDescription="@null" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Space
+                        android:layout_width="1dp"
+                        android:layout_height="16dp"
+                        android:layout_weight="1" />
+
+                    <!-- 주유소 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/quickFuel"
+                        style="@style/SurfaceCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/choice_height"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:rippleColor="#18002C5F">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingHorizontal="20dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="@dimen/icon_box"
+                                android:layout_height="@dimen/icon_box"
+                                app:cardBackgroundColor="@color/fuel_yellow"
+                                app:cardCornerRadius="100dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/icon_size"
+                                    android:layout_height="@dimen/icon_size"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_fuel"
+                                    android:contentDescription="@null" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="주유소"
+                                    android:textSize="@dimen/text_choice" />
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="주유 · 충전소"
+                                    android:textColor="@color/text_muted"
+                                    android:textSize="@dimen/text_small" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_arrow"
+                                android:contentDescription="@null" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Space
+                        android:layout_width="1dp"
+                        android:layout_height="16dp"
+                        android:layout_weight="1" />
+
+                    <!-- 휴식 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/quickRest"
+                        style="@style/SurfaceCard"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/choice_height"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:rippleColor="#18002C5F">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingHorizontal="20dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="@dimen/icon_box"
+                                android:layout_height="@dimen/icon_box"
+                                app:cardBackgroundColor="@color/hyundai_navy"
+                                app:cardCornerRadius="100dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="@dimen/icon_size"
+                                    android:layout_height="@dimen/icon_size"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_rest"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/surface_white" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="좀 쉬고 싶어"
+                                    android:textSize="@dimen/text_choice" />
+
+                                <TextView
+                                    style="@style/TextStrong"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="휴게소 · 쉼터"
+                                    android:textColor="@color/text_muted"
+                                    android:textSize="@dimen/text_small" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_arrow"
+                                android:contentDescription="@null" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
